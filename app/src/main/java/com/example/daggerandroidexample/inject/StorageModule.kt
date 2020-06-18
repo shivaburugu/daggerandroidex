@@ -1,24 +1,27 @@
 package com.example.daggerandroidexample.inject
 
-import android.app.Application
 import android.content.Context
-import com.example.daggerandroidexample.MainApplication
+import android.content.SharedPreferences
 import dagger.Module
 import dagger.Provides
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 
 @Module
+@InstallIn(ApplicationComponent::class)
 class StorageModule {
 
     @Provides
-    fun provideApplication(application: MainApplication): Application = application
-
-    @Provides
-    fun provideApplicationContext(application: MainApplication): Context = application
-
-    @Singleton
-    @Provides
-    fun provideSharedPreference(applicationContext: Context) =
+    fun provideSharedPreference(@ApplicationContext applicationContext: Context): SharedPreferences =
          applicationContext.getSharedPreferences("Test",Context.MODE_PRIVATE)
+
+    @DevKey
+    @Provides
+    fun provideDevKey() : String = "Development Key"
+
+    @ProdKey
+    @Provides
+    fun provideProdKey() : String = "Prod Key"
 
 }

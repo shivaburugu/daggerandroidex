@@ -1,3 +1,4 @@
-<resources>
-    <string name="app_name">Dagger Android Example</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="DuplicateStrings">Dagger Android Example</string>
+    <string name="sample1" tools:ignore="DuplicateStrings">Dagger Android Example</string>
 </resources>
